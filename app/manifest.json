@@ -1,0 +1,31 @@
+{
+  "name": "Remedy Autofill",
+  "version": "0.0.2",
+  "manifest_version": 2,
+  "description": "This extension will autofill common fields in Remedy tickets for student technical consultants",
+  "homepage_url": "https://github.com/njscholfield/remedy-autofill",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_ui": {
+    "page": "src/options/index.html",
+    "chrome_style": true,
+    "open_in_tab": false
+  },
+  "permissions": [
+    "https://helpdesk.cssd.pitt.edu/*",
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://helpdesk.cssd.pitt.edu/*"
+      ],
+      "js": [
+        "src/inject/autofill.js"
+      ]
+    }
+  ]
+}

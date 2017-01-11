@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Remedy AutoFill Options</title>
+    <style>
+      .form-group {
+        padding: 0.5em;
+      }
+      .success {
+        color: #43ac6a;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+    <body>
+      <h4 class="success hidden">Options successfully saved!</h4>
+      <form>
+        <legend>Settings</legend>
+        <fieldset>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="xyz123">
+          </div>
+          <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" name="location">
+              <option value="TechRow">TechRow</option>
+              <option value="Towers Lobby">Towers Lobby</option>
+            </select>
+          </div>
+        </fieldset>
+        <div class="form-group">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      <script src="options.js"></script>
+    </body>
+</html>
