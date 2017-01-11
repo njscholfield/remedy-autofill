@@ -4,9 +4,6 @@
   let username = undefined;
   let assignment = undefined;
 
-  console.log(chrome.runtime);
-  console.log(chrome.runtime.id);
-
   chrome.storage.sync.get(['location', 'username'], function(items) {
     if(items.location === undefined || items.username === undefined || items.username === '') {
       alert('If you want to use Remedy Autofill, you have to configure it in extension settings.');
