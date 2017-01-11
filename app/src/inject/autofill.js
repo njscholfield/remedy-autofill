@@ -22,6 +22,11 @@
   const custUsername = document.querySelector('#arid_WIN_0_536871077');
   const phnum = document.querySelector('#arid_WIN_0_536870918');
   const apptType = document.querySelector('#arid_WIN_0_536870957');
+  const osType = document.querySelector('#arid_WIN_0_536871005');
+  const status = document.querySelector('#arid_WIN_0_7');
+  const closed = document.querySelector('#arid_WIN_0_536870980');
+  const solutionType = document.querySelector('#arid_WIN_0_536870958');
+  const hoursWorked = document.querySelector('#arid_WIN_0_536870933');
 
   const change = new Event('change');
 
@@ -43,8 +48,19 @@
     custUsername.focus();
   }
 
+  function closeTicket() {
+    status.value = 'Closed';
+    status.dispatchEvent(change);
+    closed.value = 'Resolved';
+    closed.dispatchEvent(change);
+    solutionType.focus();
+  }
+
   templateTitle.addEventListener('dblclick', template);
   category.addEventListener('dblclick', rest);
   custUsername.addEventListener('keypress', (e) => (e.key === 'Enter') ? phnum.focus(): false);
   phnum.addEventListener('keypress', (e) => (e.key === 'Enter') ? apptType.focus() : false);
+  apptType.addEventListener('change', () => osType.focus());
+  solutionType.addEventListener('dblclick', closeTicket);
+  solutionType.addEventListener('change', () => hoursWorked.focus());
 })();
