@@ -8,8 +8,8 @@ This is a Chrome extension to autofill common fields in Remedy helpdesk tickets 
 - [Using the Extension](#using-the-extension)
 	- [Fill Template](#fill-template)
 	- [Fill Category, Sub-Category, and Assigned To Individual, Device Type](#fill-category-sub-category-and-assigned-to-individual-device-type)
-	- [Customer Username](#customer-username)
-	- [Customer Phone Number](#customer-phone-number)
+	- [Customer Information](#customer-information)
+	- [Close Ticket](#close-ticket)
 - [Notes](#notes)
 - [Anatomy of this Project](#anatomy-of-this-project)
 
@@ -44,17 +44,25 @@ This is a Chrome extension to autofill common fields in Remedy helpdesk tickets 
 ##### Fill Category, Sub-Category, and Assigned To Individual, Device Type
 - Double click on the *Category* box
 
-###### Exactly what this does
-  - Sets *Category* to `Client - Hardware / Software`.
-  - Sets *Sub-Category* to `Software Application - Supported`.
-  - Sets *Assigned to Individual* to the `username` entered in options.
-  - Changes the *Device Type* in the *Long Description* to just `Laptop`.
+> ###### Exactly what this does:
+>  - Sets *Category* to `Client - Hardware / Software`.
+>  - Sets *Sub-Category* to `Software Application - Supported`.
+>  - Sets *Assigned to Individual* to the `username` entered in options.
+>  - Changes the *Device Type* in the *Long Description* to just `Laptop`.
 
-##### Customer Username
+##### Customer Information
 - When you hit enter to populate the user info, the *Phone Number* box will automatically be selected.
-
-##### Customer Phone Number
 - Hit enter after entering to phone number to go the *Appointment Type* box
+- After changing the *Appointment Type*, the *OS Type* box will automatically be selected.
+
+##### Close Ticket
+- Double click on the *Solution Type* box
+
+> ###### Exactly what this does:
+> - Sets *Status* to `Closed`
+> - Sets *Closed* to `Resolved`
+
+- After you set the *Solution Type* from the menu, the *Hours Worked* box will automatically be selected.
 
 ### Notes
 - Google Chrome may periodically ask you to disable *Developer Mode* for applications. If you do that, it will disable this extension.
