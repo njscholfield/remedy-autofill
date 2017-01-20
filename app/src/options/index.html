@@ -32,6 +32,28 @@
               <option value="Towers Lobby">Towers Lobby</option>
             </select>
           </div>
+          <hr>
+          <h4>Features</h4>
+          <p>Enable or Disable these features to customize the autofilling.
+          <div class="form-group">
+            <input type="checkbox" name="template" checked>
+            <label for="template">Fill TechRow or Towers Lobby Template</labeL>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="category" checked>
+            <label for="category">Fill category, assigned to, and Laptop in long description</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="user" checked>
+            <label for="user">Select the next field while entering customer information</label>
+            <input type="checkbox" class="hidden">
+            <input type="checkbox" class="hidden">
+          </div>
+          <div class="form-group">
+            <input type="checkbox" name="closeTicket" checked>
+            <label for="closeTicket">Sets ticket to closed & resolved, selects hours worked field</label>
+            <input type="checkbox" class="hidden">
+          </div>
         </fieldset>
         <div class="form-group">
           <button type="submit">Save</button>
