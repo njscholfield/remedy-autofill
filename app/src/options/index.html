@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Remedy AutoFill Options</title>
+    <title>TSD AutoFill Options</title>
     <style>
       .form-group {
         padding: 0.5em;
@@ -22,37 +22,22 @@
         <legend>Settings</legend>
         <fieldset>
           <div class="form-group">
-            <label for="username">Username</label>
-            <input id="username" name="username" type="text" placeholder="xyz123">
-          </div>
-          <div class="form-group">
             <label for="location">Location</label>
             <select id="location" name="location">
-              <option value="TechRow">TechRow</option>
-              <option value="Towers Lobby">Towers Lobby</option>
+              <option value="University_Store_on_ 5th">University Store on 5th</option>
+              <option value="Towers">Towers</option>
             </select>
           </div>
           <hr>
           <h4>Features</h4>
           <p>Enable or Disable these features to customize the autofilling.
           <div class="form-group">
-            <input type="checkbox" name="template" checked>
-            <label for="template">Fill TechRow or Towers Lobby Template</labeL>
+            <input type="checkbox" name="search" checked>
+            <label for="template">Improved contact search. Automatically seached by <em>All Fields</em> so you can use username instead of full name.</labeL>
           </div>
           <div class="form-group">
-            <input type="checkbox" name="category" checked>
-            <label for="category">Fill category, assigned to, and Laptop in long description</label>
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="user" checked>
-            <label for="user">Select the next field while entering customer information</label>
-            <input type="checkbox" class="hidden">
-            <input type="checkbox" class="hidden">
-          </div>
-          <div class="form-group">
-            <input type="checkbox" name="closeTicket" checked>
-            <label for="closeTicket">Sets ticket to closed & resolved, selects hours worked field</label>
-            <input type="checkbox" class="hidden">
+            <input type="checkbox" name="autofill" checked>
+            <label for="category">Fill origin, desk, type, and service area</label>
           </div>
         </fieldset>
         <div class="form-group">

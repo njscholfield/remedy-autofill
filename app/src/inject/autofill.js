@@ -2,78 +2,55 @@
 /* global chrome */
 
 (function() {
-  let settings = {username: undefined, assignment: undefined, options: []};
+  const pageD = document.querySelector('.pageDescription');
+  if(!pageD || !pageD.innerHTML.includes('New Case')) return;
+
+  let settings = {assignment: undefined, options: []};
 
   var listeners = [
-    'templateTitle.addEventListener(\'dblclick\', template)',
-    'category.addEventListener(\'dblclick\', rest)',
-    'custUsername.addEventListener(\'keypress\', (e) => (e.key === \'Enter\') ? phnum.focus(): false)',
-    'phnum.addEventListener(\'keypress\', (e) => (e.key === \'Enter\') ? apptType.focus() : false)',
-    'apptType.addEventListener(\'change\', () => osType.focus())',
-    'solutionType.addEventListener(\'dblclick\', closeTicket)',
-    'solutionType.addEventListener(\'change\', () => hoursWorked.focus())'
+    'searchBtn.addEventListener(\'click\', searchUsername)',
+    'contactName.addEventListener(\'dblclick\', fillDefaults)'
   ];
 
-  chrome.storage.sync.get(['location', 'username', 'options'], function(items) {
-    if(!items.location || !items.username) {
-      alert('If you want to use Remedy Autofill, you have to configure it in extension settings.');
+  chrome.storage.sync.get(['location', 'options'], function(items) {
+    if(!items.location) {
+      alert('If you want to use TSD Autofill, you have to configure it in extension settings.');
     } else {
-      settings.username = items.username;
       settings.assignment = items.location;
       settings.options = items.options;
       applySettings(listeners);
     }
   });
 
-  const category = document.querySelector('#arid_WIN_0_536871108');
-  const subCategory = document.querySelector('#arid_WIN_0_536871109');
-  const templateCategory = document.querySelector('#arid_WIN_0_536870987');
-  const templateTitle = document.querySelector('#arid_WIN_0_536870986');
-  const assignedTo = document.querySelector('#arid_WIN_0_4');
-  const longDescription = document.querySelector('#arid_WIN_0_536870925');
-  const custUsername = document.querySelector('#arid_WIN_0_536871077');
-  const phnum = document.querySelector('#arid_WIN_0_536870918');
-  const apptType = document.querySelector('#arid_WIN_0_536870957');
-  const osType = document.querySelector('#arid_WIN_0_536871005');
-  const status = document.querySelector('#arid_WIN_0_7');
-  const closed = document.querySelector('#arid_WIN_0_536870980');
-  const solutionType = document.querySelector('#arid_WIN_0_536870958');
-  const hoursWorked = document.querySelector('#arid_WIN_0_536870933');
-  const remedyMode = document.querySelector('.TBTopBarStatusMode');
+  const contactName = document.getElementById('cas3');
+  const caseOrigin = document.getElementById('cas11');
+  const serviceArea = document.getElementById('00N3D000001fA7Y');
+  const serviceType = document.getElementById('cas5');
+  const searchBtn = document.getElementById('cas3_lkwgt');
 
   const change = new Event('change');
 
-  function template() {
-    checkRemedyMode();
-    templateCategory.value = 'SCS';
-    templateCategory.dispatchEvent(change);
-    templateTitle.value = `SCS: Walk-in ${settings.assignment}`;
-    templateTitle.dispatchEvent(change);
+  function fillDefaults() {
+    caseOrigin.value = 'Walk-In';
+    caseOrigin.dispatchEvent(change);
+    serviceType.value = 'Problem';
+    serviceArea.value = 'End-Point Computing';
+    serviceArea.dispatchEvent(change);
+    setTimeout(() => {
+      const deskLocation = document.getElementById('00N3D000001fA7q');
+      deskLocation.value = settings.assignment;
+    }, 0);
   }
 
-  function rest() {
-    category.value = 'Client - Hardware / Software';
-    category.dispatchEvent(change);
-    subCategory.value = 'Software Application - Supported';
-    subCategory.dispatchEvent(change);
-    assignedTo.value = settings.username;
-    assignedTo.dispatchEvent(change);
-    longDescription.value = longDescription.value.replace(', Desktop, Tablet, Smartphone', '');
-    custUsername.focus();
-  }
-
-  function closeTicket() {
-    status.value = 'Closed';
-    status.dispatchEvent(change);
-    closed.value = 'Resolved';
-    closed.dispatchEvent(change);
-    solutionType.focus();
-  }
-
-  function checkRemedyMode() {
-    if(remedyMode.innerHTML === 'Search') {
-      alert('You are in search mode. Are you sure that is what you want?');
-    }
+  function searchUsername(e) {
+    e.preventDefault();
+    const urlstring = '/_ui/common/data/LookupPage?lkfm=editPage&lknm=cas3&lktp=' + document.getElementById('cas3_lktp').value + '&lksrch=' + contactName.value;
+    const searchWindow = window.open(urlstring);
+    const theDoc = searchWindow.document;
+    const theScript = document.createElement('script');
+    theScript.innerHTML = 'window.onload = function() {const frame = document.getElementById(\'searchFrame\').contentDocument;const allFields = frame.getElementById(\'lkenhmdSEARCH_ALL\');const theForm = frame.getElementById(\'theForm\');allFields.checked = true;theForm.submit();const resFrame = document.getElementById(\'resultsFrame\');resFrame.onload = function() {const resDoc = resFrame.contentDocument;const rows = resDoc.querySelector(\'.list\').rows;if (rows.length === 2) {rows[1].cells[0].firstElementChild.click();window.close();}};};';
+    theDoc.body.appendChild(theScript);
+    searchBtn.removeEventListener('click', searchUsername);
   }
 
   function applySettings(allListeners) {

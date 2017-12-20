@@ -1,12 +1,17 @@
 {
-  "name": "Remedy Autofill",
-  "version": "0.2.0",
+  "name": "TSD Autofill",
+  "version": "1.0.0",
   "manifest_version": 2,
-  "description": "Autofills common fields in Remedy tickets for student technical consultants at Pitt",
-  "homepage_url": "https://github.com/njscholfield/remedy-autofill",
+  "description": "Autofills common fields in Salesforce tickets for student technical consultants at Pitt",
+  "homepage_url": "https://github.com/njscholfield/tsd-autofill",
+  "browser_action" : {
+    "default_icon": {
+      "38": "icons/icon38.png"
+    }
+  },
   "icons": {
     "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
+    "48": "icons/icon48@2x.png",
     "128": "icons/icon128.png"
   },
   "options_ui": {
@@ -15,17 +20,20 @@
     "open_in_tab": false
   },
   "permissions": [
-    "https://helpdesk.cssd.pitt.edu/*",
+    "https://pitt--stg.cs70.my.salesforce.com/*",
+    "https://pitt.my.salesforce.com/*",
     "storage"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://helpdesk.cssd.pitt.edu/*"
+        "https://pitt--stg.cs70.my.salesforce.com/*",
+        "https://pitt.my.salesforce.com/*"
       ],
       "js": [
         "src/inject/autofill.js"
-      ]
+      ],
+      "all_frames": true
     }
   ]
 }
