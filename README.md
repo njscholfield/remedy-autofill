@@ -1,20 +1,18 @@
-# Remedy Autofill
+# TSD Autofill
 
-This is a Chrome extension to autofill common fields in Remedy helpdesk tickets for Pitt Student Technical Consultants.
+This is a Chrome extension to autofill common fields in TSD helpdesk tickets and improve customer search for Pitt Student Technical Consultants.
 
 ### Table of Contents
 - [Installation Instructions](#installation-instructions)
 - [Configure Settings](#configure-settings)
 - [Using the Extension](#using-the-extension)
-	- [Fill Template](#fill-template)
-	- [Fill Category, Sub-Category, and Assigned To Individual, Device Type](#fill-category-sub-category-and-assigned-to-individual-device-type)
-	- [Customer Information](#customer-information)
-	- [Close Ticket](#close-ticket)
+	- [Improved Customer Search](#improved-customer-search)
+	- [Autofill Fields](#autofill-fields)
 - [Notes](#notes)
 - [Anatomy of this Project](#anatomy-of-this-project)
 
 ### Installation Instructions
-- On the GitHub page for this extension, click on [releases](https://github.com/njscholfield/remedy-autofill/releases). (It is in the middle above the colored bar)
+- On the GitHub page for this extension, click on [releases](https://github.com/njscholfield/tsd-autofill/releases). (It is in the middle above the colored bar)
 - Find the newest version and click *Source code (zip)* to download it.
   - Unzip the download if it is not done automatically.
   - You can save this folder anywhere, but you will have to find it later.
@@ -29,47 +27,39 @@ This is a Chrome extension to autofill common fields in Remedy helpdesk tickets 
 - Go to the extensions page in Chrome.
   - (Chrome Menu > More Tools > Extensions)
 - Click 'options' for this extension.
-- Enter your Pitt username, and select where you are working.
+- Select where you are working.
 - Click save.
-- If you had Remedy open, you will have to refresh the page for the settings to take effect.
+- If you had Salesforce open, you will have to refresh the page for the settings to take effect.
 
 ### Using the Extension
 
 ###### Make sure you have installed and configured the extension first.
 
-##### Fill Template
-- Double click on the *Ticket Template Title* box
-- Then hit enter like normal to apply the template
+##### Improved Customer Search
+- **Just click on the search button like usual to trigger it**
+- Makes it easier to search by username instead of by full name
+- Automatically searches using *All Fields*
+- If only 1 result is found for the entered username, it is automatically selected and the search tab is closed
+	- (search tab will open and then quickly close itself)
+- If there is more than 1 result, the tab will say open to allow you to select the correct one
+	- once you select one, the tab will stay open but it will be filled in the ticket so just close the search tab
+> After you click the search button once, the button will revert to the default functionality. This allows you to get more info about the customer after their name is filled if you need to.
 
-##### Fill Category, Sub-Category, and Assigned To Individual, Device Type
-- Double click on the *Category* box
-
+##### Autofill Fields
+- Double click on the *Contact Name* box to trigger the autofill
 > ###### Exactly what this does:
->  - Sets *Category* to `Client - Hardware / Software`.
->  - Sets *Sub-Category* to `Software Application - Supported`.
->  - Sets *Assigned to Individual* to the `username` entered in options.
->  - Changes the *Device Type* in the *Long Description* to just `Laptop`.
-
-##### Customer Information
-- When you hit enter to populate the user info, the *Phone Number* box will automatically be selected.
-- Hit enter after entering to phone number to go the *Appointment Type* box
-- After changing the *Appointment Type*, the *OS Type* box will automatically be selected.
-
-##### Close Ticket
-- Double click on the *Solution Type* box
-
-> ###### Exactly what this does:
-> - Sets *Status* to `Closed`
-> - Sets *Closed* to `Resolved`
-
-- After you set the *Solution Type* from the menu, the *Hours Worked* box will automatically be selected.
+>	- Sets *Case Origin* to `Walk-In`
+> - Sets *Technical Support Desk* to the `location`
+ selected in the extension settings
+> - Sets *Type* to `Problem`
+> - Sets *Service Area* to `End-Point Computing`
 
 ### Notes
 - Google Chrome may periodically ask you to disable *Developer Mode* for applications. If you do that, it will disable this extension.
 
 - You can change anything this extension has autofilled like you normally would.
 
-- If you run into any problems or have any feature request, submit an [issue](https://github.com/njscholfield/remedy-autofill/issues) on GitHub. I make no guarantees I will fix issues or add requested features.
+- If you run into any problems or have any feature request, submit an [issue](https://github.com/njscholfield/tsd-autofill/issues) on GitHub. I make no guarantees I will fix issues or add requested features.
 
 - If you know what you are doing and want to make changes, fix something, or add a feature, feel free to submit a pull request.
 
@@ -78,7 +68,7 @@ Information about the files that make up this extension.
 
 #### File Tree
 ```
-remedy-autofill-x.x.x/
+tsd-autofill-x.x.x/
 ├── app/
 |   ├── icons/
 |   |   └── icon_files...
@@ -103,7 +93,7 @@ remedy-autofill-x.x.x/
 - `app/src/inject` folder
   - contains `autofill.js`
     - this is the file that does the actual work on the page
-    - it is 'injected' (added) into the Remedy page to add the autofill features
+    - it is 'injected' (added) into the page to add the autofill features
 - `app/src/options` folder
   - these files control the extension settings page
 - `app/manifest.json`
