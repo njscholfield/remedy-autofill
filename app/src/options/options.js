@@ -1,4 +1,5 @@
 /* global chrome */
+/* Created by Noah Scholfield */
 
 (function(){
   const assignment = document.querySelector('#location');
@@ -6,6 +7,7 @@
   const success = document.querySelector('.success');
   const features = [...document.querySelectorAll('input[type="checkbox"]')];
 
+  // Saves extension settings
   function submit(e) {
     e.preventDefault();
     const assignVal = assignment.value;
@@ -18,6 +20,7 @@
     });
   }
 
+  // Displays the currently saves settings
   (function fillSavedValues() {
     chrome.storage.sync.get(['location', 'options'], function(settings) {
       assignment.value = settings.location || 'University_Store_on_ 5th';

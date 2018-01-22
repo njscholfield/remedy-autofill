@@ -1,5 +1,6 @@
 /* eslint no-unused-vars: 0 */
 /* global chrome */
+/* Created by Noah Scholfield */
 
 (function() {
   const pageD = document.querySelector('.pageDescription');
@@ -12,6 +13,7 @@
     'contactName.addEventListener(\'dblclick\', fillDefaults)'
   ];
 
+  // Load saved settings
   chrome.storage.sync.get(['location', 'options'], function(items) {
     if(!items.location) {
       alert('If you want to use TSD Autofill, you have to configure it in extension settings.');
@@ -22,19 +24,26 @@
     }
   });
 
+  // Element variables
   const contactName = document.getElementById('cas3');
   const caseOrigin = document.getElementById('cas11');
   const serviceArea = document.getElementById('00N3D000001fA7Y');
   const serviceType = document.getElementById('cas5');
   const searchBtn = document.getElementById('cas3_lkwgt');
+  
+  // Variables used to autofill the dropdowns in fillDefaults()
+  const CASE_ORIGIN = 'Walk-In';
+  const SERVICE_TYPE = 'Problem';
+  const SERVICE_AREA = 'End-Point Computing';
 
   const change = new Event('change');
 
+  // Function that selects commonly used dropdown values
   function fillDefaults() {
-    caseOrigin.value = 'Walk-In';
+    caseOrigin.value = CASE_ORIGIN;
     caseOrigin.dispatchEvent(change);
-    serviceType.value = 'Problem';
-    serviceArea.value = 'End-Point Computing';
+    serviceType.value = SERVICE_TYPE;
+    serviceArea.value = SERVICE_AREA;
     serviceArea.dispatchEvent(change);
     setTimeout(() => {
       const deskLocation = document.getElementById('00N3D000001fA7q');
@@ -42,6 +51,7 @@
     }, 0);
   }
 
+  // Function that allows for one-click username searches
   function searchUsername(e) {
     e.preventDefault();
     const urlstring = '/_ui/common/data/LookupPage?lkfm=editPage&lknm=cas3&lktp=' + document.getElementById('cas3_lktp').value + '&lksrch=' + contactName.value;
@@ -52,7 +62,8 @@
     theDoc.body.appendChild(theScript);
     searchBtn.removeEventListener('click', searchUsername);
   }
-
+  
+  // Enables functions based upon extension settings
   function applySettings(allListeners) {
     var usedListeners = allListeners.filter((item, index) => settings.options[index]);
     usedListeners.forEach((listener) => eval(listener));
