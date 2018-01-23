@@ -12,16 +12,28 @@ This is a Chrome extension to autofill common fields in TSD helpdesk tickets and
 - [Anatomy of this Project](#anatomy-of-this-project)
 
 ### Installation Instructions
-- On the GitHub page for this extension, click on [releases](https://github.com/njscholfield/tsd-autofill/releases). (It is in the middle above the colored bar)
-- Find the newest version and click *Source code (zip)* to download it.
-  - Unzip the download if it is not done automatically.
-  - You can save this folder anywhere, but you will have to find it later.
-- In Google Chrome, click the *menu* button, go to *More Tools*, then *Extensions*.
-- Check the box in the top right to enable *Developer Mode*
-- Click the *Load unpacked extension...* button
-- Find the unzipped folder and select the `app` folder inside of it.
 
-**Important:** You must configure the extension settings for it to work properly. See below:
+#### Chrome Web Store Installation
+- After paying Google $5, this extension is now on the Chrome Web Store. The manual installation instructions below will still work but it's much easier to just install it through the store.
+- Here are the download links, both go to the same place so you can use either one:
+	- https://noahscholfield.com/tsd
+	- https://bit.ly/tsdauto
+- **One thing to note:**
+	- If you are signed into Chrome, the extension will install on any browser you are signed into and sync you settings. 
+		- *This means that it will sync whether you are working at the University Store or Towers, so keep that in mind when working at either location.*
+
+**Important:** After installing, you must configure the extension settings for it to work properly. See below:
+
+---
+#### ~~Manual Installation (old way)~~
+- ~~On the GitHub page for this extension, click on [releases](https://github.com/njscholfield/tsd-autofill/releases). (It is in the middle above the colored bar)~~
+- ~~Find the newest version and click *Source code (zip)* to download it.~~
+  - ~~Unzip the download if it is not done automatically.~~
+  - ~~You can save this folder anywhere, but you will have to find it later.~~
+- ~~In Google Chrome, click the *menu* button, go to *More Tools*, then *Extensions*.~~
+- ~~Check the box in the top right to enable *Developer Mode*~~
+- ~~Click the *Load unpacked extension...* button~~
+- ~~Find the unzipped folder and select the `app` folder inside of it.~~
 
 ### Configure Settings
 - Go to the extensions page in Chrome.
