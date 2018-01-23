@@ -67,7 +67,7 @@ This is a Chrome extension to autofill common fields in TSD helpdesk tickets and
 > - Sets *Service Area* to `End-Point Computing`
 
 ### Notes
-- Google Chrome may periodically ask you to disable *Developer Mode* for applications. If you do that, it will disable this extension.
+- ~~Google Chrome may periodically ask you to disable *Developer Mode* for applications. If you do that, it will disable this extension.~~
 
 - You can change anything this extension has autofilled like you normally would.
 
