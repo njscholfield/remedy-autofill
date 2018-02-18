@@ -27,7 +27,7 @@
   // Element variables
   const contactName = document.getElementById('cas3');
   const caseOrigin = document.getElementById('cas11');
-  const serviceArea = document.getElementById('00N3D000001fA7Y');
+  const serviceArea = document.getElementById('00N4100000c7Bby');
   const serviceType = document.getElementById('cas5');
   const searchBtn = document.getElementById('cas3_lkwgt');
   
@@ -46,7 +46,7 @@
     serviceArea.value = SERVICE_AREA;
     serviceArea.dispatchEvent(change);
     setTimeout(() => {
-      const deskLocation = document.getElementById('00N3D000001fA7q');
+      const deskLocation = document.getElementById('00N4100000c7KJH');
       deskLocation.value = settings.assignment;
     }, 0);
   }

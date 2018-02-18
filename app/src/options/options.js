@@ -23,7 +23,7 @@
   // Displays the currently saves settings
   (function fillSavedValues() {
     chrome.storage.sync.get(['location', 'options'], function(settings) {
-      assignment.value = settings.location || 'University_Store_on_ 5th';
+      assignment.value = settings.location || 'University_Store_on_5th';
       features.forEach((checkbox, index) => checkbox.checked = settings.options[index]);
     });
   })();
