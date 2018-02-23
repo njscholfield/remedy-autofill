@@ -4,9 +4,19 @@
 
 (function() {
   const pageD = document.querySelector('.pageDescription');
-  if(!pageD || !pageD.innerHTML.includes('New Case')) return;
+  if (!pageD || !pageD.innerHTML.includes('New Case')) return;
 
-  let settings = {assignment: undefined, options: []};
+
+  chrome.runtime.onMessage.addListener(function(msg, sender, response) {
+    if(msg.from === 'popup' && msg.subject === 'fillDefaults') {
+      fillDefaults();
+    }
+  });
+
+  let settings = {
+    assignment: undefined,
+    options: []
+  };
 
   var listeners = [
     'searchBtn.addEventListener(\'click\', searchUsername)',
@@ -15,7 +25,7 @@
 
   // Load saved settings
   chrome.storage.sync.get(['location', 'options'], function(items) {
-    if(!items.location) {
+    if (!items.location) {
       alert('If you want to use TSD Autofill, you have to configure it in extension settings.');
     } else {
       settings.assignment = items.location;
@@ -30,7 +40,7 @@
   const serviceArea = document.getElementById('00N4100000c7Bby');
   const serviceType = document.getElementById('cas5');
   const searchBtn = document.getElementById('cas3_lkwgt');
-  
+
   // Variables used to autofill the dropdowns in fillDefaults()
   const CASE_ORIGIN = 'Walk-In';
   const SERVICE_TYPE = 'Problem';
@@ -62,7 +72,7 @@
     theDoc.body.appendChild(theScript);
     searchBtn.removeEventListener('click', searchUsername);
   }
-  
+
   // Enables functions based upon extension settings
   function applySettings(allListeners) {
     var usedListeners = allListeners.filter((item, index) => settings.options[index]);
