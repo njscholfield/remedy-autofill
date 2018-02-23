@@ -4,9 +4,18 @@
 
 (function() {
   const pageD = document.querySelector('.pageDescription');
-  if(!pageD || !pageD.innerHTML.includes('New Case')) return;
+  if (!pageD || !pageD.innerHTML.includes('New Case')) return;
 
-  let settings = {location: undefined, options: []};
+  chrome.runtime.onMessage.addListener(function(msg, sender, response) {
+    if(msg.from === 'popup' && msg.subject === 'fillDefaults') {
+      fillDefaults();
+    }
+  });
+
+  let settings = {
+    assignment: undefined,
+    options: []
+  };
 
   var listeners = [
     'searchBtn.addEventListener(\'click\', searchUsername)',
