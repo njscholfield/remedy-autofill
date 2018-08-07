@@ -1,8 +1,9 @@
 /* global chrome: false */
 
-const btn = document.querySelector('#js-button');
+const btnNewCompSetup = document.getElementById('js-new-comp-setup');
+const btnOther = document.querySelector('#js-other');
 
-function fill() {
+function sendMessage(subject) {
   chrome.tabs.query({
     active: true,
     currentWindow: true
@@ -11,8 +12,10 @@ function fill() {
     chrome.tabs.sendMessage(
       tabs[0].id, {
         from: 'popup',
-        subject: 'fillDefaults'
+        subject: subject
       });
   });
 }
-btn.addEventListener('click', fill);
+
+btnOther.addEventListener('click', () => sendMessage('fillDefaults'));
+btnNewCompSetup.addEventListener('click', () => sendMessage('newComputerSetup'));
