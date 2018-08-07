@@ -7,7 +7,8 @@ This is a Chrome extension to autofill common fields in support tickets and impr
 - [Configure Settings](#configure-settings)
 - [Using the Extension](#using-the-extension)
 	- [Improved Customer Search](#improved-customer-search)
-	- [Autofill Fields](#autofill-fields)
+	- [Generic Ticket Autofill](#generic-ticket-autofill)
+	- [New Computer Setup](#new-computer-setup)
 - [Notes](#notes)
 - [Anatomy of this Project](#anatomy-of-this-project)
 
@@ -45,8 +46,9 @@ This is a Chrome extension to autofill common fields in support tickets and impr
 	- *once you select one, the tab will stay open but it will be filled in the ticket so just manually close the search tab*
 > After you click the search button once, the button will revert to the default functionality. This allows you to get more info about the customer after their name is filled if you need to.
 
-##### Autofill Fields
+##### Generic Ticket Autofill
 - Double click on the *Contact Name* box to trigger the autofill
+	- You can also select the *Other* button from the extension popup by clicking on the extension icon
 - Depending which location you set the extension to, the fields will fill differently.
 > ###### Location: University Store or Towers:
 >	- Sets *Case Origin* to `Walk-In`
@@ -57,6 +59,15 @@ This is a Chrome extension to autofill common fields in support tickets and impr
 
 > ###### Location: Help Desk:
 > - Sets Case Origin to `Phone`
+
+##### New Computer Setup
+- Click the extension icon in the corner of the browser window
+- Select the *New Computer Setup* button
+> - Fills everything from *Generic Ticket Autofill* (see above)
+> - Sets *Subject* and *Description* to `New Computer Setup`
+> - Sets *Supported App* to `Microsoft Office 365 Suite`
+> - Sets *Service* to `End-Point Support (Desktops, Mobile Devices, etc.)`
+> - Sets *Device Type* to `Laptop`
 
 ### Notes
 - You can change anything this extension has autofilled like you normally would.
