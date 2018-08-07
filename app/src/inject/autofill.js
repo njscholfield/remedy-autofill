@@ -4,9 +4,21 @@
 
 (function() {
   const pageD = document.querySelector('.pageDescription');
-  if(!pageD || !pageD.innerHTML.includes('New Case')) return;
+  if (!pageD || !pageD.innerHTML.includes('New Case')) return;
 
-  let settings = {location: undefined, options: []};
+  chrome.runtime.onMessage.addListener(function(msg, sender, response) {
+    if(msg.from !== 'popup') return;
+    if(msg.subject === 'fillDefaults') {
+      fillDefaults();
+    } else if(msg.subject === 'newComputerSetup') {
+      fillNewComputerSetup();
+    }
+  });
+
+  let settings = {
+    assignment: undefined,
+    options: []
+  };
 
   var listeners = [
     'searchBtn.addEventListener(\'click\', searchUsername)',
@@ -30,31 +42,55 @@
   const serviceArea = document.getElementById('00N4100000c7Bby');
   const serviceType = document.getElementById('cas5');
   const searchBtn = document.getElementById('cas3_lkwgt');
+  const subject = document.getElementById('cas14');
+  const descriptionBox = document.getElementById('cas15');
+  const supportedApp = document.getElementById('CF00N4100000cutap');
+  const deviceType = document.getElementById('00N4100000c7KI9');
+  const osType = document.getElementById('00N4100000c7KIc');
 
   // Variables used to autofill the dropdowns in fillDefaults()
   const HELP_DESK = 'Help Desk';
-  const CASE_ORIGIN_HELPDESK = 'Phone';
-  const CASE_ORIGIN = 'Walk-In';
-  const SERVICE_TYPE = 'Problem';
-  const SERVICE_AREA = 'End-Point Computing';
+  const PHONE = 'Phone';
+  const WALK_IN = 'Walk-In';
+  const PROBLEM = 'Problem';
+  const ENDPOINT_COMP = 'End-Point Computing';
+  
+  // Variables used to New Computer Setup
+  const NEW_COMP_SETUP = 'New Computer Setup';
+  const ENDPOINT_SUPPORT = 'End-Point Support (Desktops, Mobile Devices, etc.)';
+  const LAPTOP = 'Laptop';
+  const OFFICE_365 = 'Microsoft Office 365 Suite';
 
   const change = new Event('change');
 
   // Function that selects commonly used dropdown values
   function fillDefaults() {
     if(settings.location === HELP_DESK) {
-      caseOrigin.value = CASE_ORIGIN_HELPDESK;
+      caseOrigin.value = PHONE;
     } else {
-      caseOrigin.value = CASE_ORIGIN;
+      caseOrigin.value = WALK_IN;
       caseOrigin.dispatchEvent(change);
-      serviceType.value = SERVICE_TYPE;
-      serviceArea.value = SERVICE_AREA;
+      serviceType.value = PROBLEM;
+      serviceArea.value = ENDPOINT_COMP;
       serviceArea.dispatchEvent(change);
       setTimeout(() => {
         const deskLocation = document.getElementById('00N4100000c7KJH');
         deskLocation.value = settings.location;
       }, 0);
     }
+  }
+  
+  // Function that fills fields for a New Computer Setup
+  function fillNewComputerSetup() {
+    fillDefaults();
+    if(settings.location === HELP_DESK) return; // Help Desk doesn't do New Computer Setups
+    subject.value = NEW_COMP_SETUP;
+    descriptionBox.value = NEW_COMP_SETUP;
+    supportedApp.value = OFFICE_365;
+    const service = document.getElementById('00N4100000c7Bbt');
+    service.value = ENDPOINT_SUPPORT;
+    deviceType.value = LAPTOP;
+    osType.focus();
   }
 
   // Function to inject into the popup search window
@@ -72,7 +108,7 @@
         window.close();
       }
     };
-  };
+  }
 
   // Function that allows for one-click username searches
   function searchUsername(e) {

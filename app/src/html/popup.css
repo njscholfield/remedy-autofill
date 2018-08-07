@@ -1,0 +1,17 @@
+body {
+  width: 200px;
+  color: white;
+  background: linear-gradient(to right, #ee0979, #ff6a00);
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.btn {
+  padding: .5rem;
+  margin-top: .5rem;
+  border-radius: .2rem;
+  border: 1px solid #bbb;
+  background: white;
+  display: block;
+}
