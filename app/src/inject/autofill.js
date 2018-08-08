@@ -56,6 +56,7 @@
   const ENDPOINT_COMP = 'End-Point Computing';
   
   // Variables used to New Computer Setup
+  const REQUEST = 'Request';
   const NEW_COMP_SETUP = 'New Computer Setup';
   const ENDPOINT_SUPPORT = 'End-Point Support (Desktops, Mobile Devices, etc.)';
   const LAPTOP = 'Laptop';
@@ -84,6 +85,7 @@
   function fillNewComputerSetup() {
     fillDefaults();
     if(settings.location === HELP_DESK) return; // Help Desk doesn't do New Computer Setups
+    serviceType.value = REQUEST;
     subject.value = NEW_COMP_SETUP;
     descriptionBox.value = NEW_COMP_SETUP;
     supportedApp.value = OFFICE_365;
