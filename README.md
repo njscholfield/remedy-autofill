@@ -64,6 +64,7 @@ This is a Chrome extension to autofill common fields in support tickets and impr
 - Click the extension icon in the corner of the browser window
 - Select the *New Computer Setup* button
 > - Fills everything from *Generic Ticket Autofill* (see above)
+> - Changes *Type* to `Request`
 > - Sets *Subject* and *Description* to `New Computer Setup`
 > - Sets *Supported App* to `Microsoft Office 365 Suite`
 > - Sets *Service* to `End-Point Support (Desktops, Mobile Devices, etc.)`
