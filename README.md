@@ -88,10 +88,15 @@ tsd-autofill-x.x.x/
 |   |   └── icon_files...
 |   ├── src/
 |   |   ├── inject/
-|   |   |   └── autofill.js
-|   |   └── options/
-|   |       ├── index.html
-|   |       └── options.js
+|   |   |   ├── autofill.js
+|   |   |   └── background.js
+|   |   ├── options/
+|   |   |   ├── index.html
+|   |   |   └── options.js
+|   |   └── popup/
+|   |       ├── popup.css
+|   |       ├── popup.html
+|   |       └── popup.js
 |   └── manifest.json
 ├── LICENSE.md
 └── README.md
@@ -110,6 +115,8 @@ tsd-autofill-x.x.x/
     - it is 'injected' (added) into the page to add the autofill features
 - `app/src/options` folder
   - these files control the extension settings page
+- `app/src/popup` folder
+	- contains the files that create the popup when you click the extension icon
 - `app/manifest.json`
   - a file that tells Chrome about the extension
 - `LICENSE.md`
