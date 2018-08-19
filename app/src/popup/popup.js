@@ -1,7 +1,8 @@
 /* global chrome: false */
 
 const btnNewCompSetup = document.getElementById('js-new-comp-setup');
-const btnOther = document.querySelector('#js-other');
+const btnOther = document.getElementById('js-other');
+const locationLabel = document.getElementById('location-label');
 
 function sendMessage(subject) {
   chrome.tabs.query({
@@ -19,3 +20,10 @@ function sendMessage(subject) {
 
 btnOther.addEventListener('click', () => sendMessage('fillDefaults'));
 btnNewCompSetup.addEventListener('click', () => sendMessage('newComputerSetup'));
+
+// Gets and displays location setting in popup
+(function fillLocation() {
+  chrome.storage.sync.get(['location'], function(settings) {
+    locationLabel.innerHTML = (settings.location) ? settings.location.replace(/_/g, ' ') : 'Please set a location';
+  });
+})();
