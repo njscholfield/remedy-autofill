@@ -1,8 +1,12 @@
 /* global chrome: false */
 
-const btnNewCompSetup = document.getElementById('js-new-comp-setup');
-const btnOther = document.getElementById('js-other');
+let getFillTypes;
+chrome.runtime.getBackgroundPage(bgPage => getFillTypes = bgPage.getFillTypes);
+
 const locationLabel = document.getElementById('location-label');
+const btnContainer = document.getElementById('buttons');
+
+let autofills = [];
 
 function sendMessage(subject) {
   chrome.tabs.query({
@@ -18,12 +22,18 @@ function sendMessage(subject) {
   });
 }
 
-btnOther.addEventListener('click', () => sendMessage('fillDefaults'));
-btnNewCompSetup.addEventListener('click', () => sendMessage('newComputerSetup'));
-
 // Gets and displays location setting in popup
 (function fillLocation() {
   chrome.storage.sync.get(['location'], function(settings) {
     locationLabel.innerHTML = (settings.location) ? settings.location.replace(/_/g, ' ') : 'Please set a location';
+    autofills = getFillTypes(settings).filter(item => item.users[settings.location]);
+    autofills.forEach((item, index) => {
+      const btn = document.createElement('button');
+      btn.classList.add('btn');
+      btn.textContent = item.name;
+      btn.dataset.index = index;
+      btn.addEventListener('click', () => sendMessage(index));
+      btnContainer.appendChild(btn);
+    });
   });
 })();

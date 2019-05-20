@@ -1,7 +1,7 @@
 {
   "name": "TSD Autofill",
   "author": "Noah Scholfield",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "manifest_version": 2,
   "description": "Autofills common fields and improves user search in Salesforce tickets for student technical and help desk consultants at Pitt",
   "homepage_url": "https://github.com/njscholfield/tsd-autofill",
@@ -27,7 +27,10 @@
     "tabs"
   ],
   "background": {
-    "scripts": ["src/inject/background.js"]
+    "scripts": [
+      "src/inject/fillTypes.js",
+      "src/inject/background.js"
+     ]
   },
   "content_scripts": [
     {
@@ -35,6 +38,7 @@
         "https://*.my.salesforce.com/*"
       ],
       "js": [
+        "src/inject/fillTypes.js",
         "src/inject/autofill.js"
       ],
       "all_frames": true
