@@ -16,7 +16,7 @@
   });
 
   let settings = {
-    assignment: undefined,
+    location: undefined,
     options: []
   };
 
@@ -54,7 +54,7 @@
   const WALK_IN = 'Walk-In';
   const PROBLEM = 'Problem';
   const ENDPOINT_COMP = 'End-Point Computing';
-  
+
   // Variables used to New Computer Setup
   const REQUEST = 'Request';
   const NEW_COMP_SETUP = 'New Computer Setup';
@@ -80,7 +80,7 @@
       }, 0);
     }
   }
-  
+
   // Function that fills fields for a New Computer Setup
   function fillNewComputerSetup() {
     fillDefaults();
